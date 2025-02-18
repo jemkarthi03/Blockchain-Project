@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+The Vaccine Tracking System is a blockchain-based web application that ensures the secure, transparent, and tamper-proof tracking of vaccine batches from manufacturers to end-users. Built using React for the frontend and Ethereum smart contracts for the backend, this system leverages MetaMask for user authentication and Ganache for local blockchain deployment. The primary goal is to prevent counterfeit vaccines by providing real-time tracking and verification using smart contracts.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+🚀 Step-by-Step Procedure to Run the Vaccine Tracking Project
+Follow these steps to set up, compile, and run your Vaccine Tracking System using React, Truffle, Ganache, and MetaMask.
 
-## Available Scripts
+🔹 Step 1: Install Required Software
+Before running the project, make sure you have the following installed:
+✅ Node.js (for running React and installing dependencies)
+✅ Truffle (for compiling and deploying smart contracts)
+✅ Ganache (for a local blockchain environment)
+✅ MetaMask (for interacting with the blockchain)
 
-In the project directory, you can run:
+Install globally if not installed:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+npm install -g truffle
+npm install -g ganache
+🔹 Step 2: Clone or Create the Project
+1️⃣ Clone the project (if using GitHub)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+git clone https://github.com/your-repo/vaccine-tracking.git
+cd vaccine-tracking
+OR
+1️⃣ Manually create a project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+npx create-react-app vaccine-tracking
+cd vaccine-tracking
+🔹 Step 3: Install Dependencies
+Run this inside the project folder:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+npm install
+Also, install Web3 and dotenv for blockchain interaction:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+npm install web3 dotenv
+🔹 Step 4: Start Ganache (Blockchain Network)
+1️⃣ Open a new terminal and run:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+npx ganache --networkId 1337 --gasLimit 6721975 --gasPrice 0
+💡 If port 8545 is already in use, close any previous Ganache instances or change the port:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+npx ganache --port 7545 --networkId 1337
+🔹 Step 5: Compile and Deploy Smart Contracts
+1️⃣ Inside the project folder, run:
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+truffle compile
+truffle migrate --reset --network development
+If network mismatch occurs, make sure Truffle config matches Ganache Network ID (1337 or 5777).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+🔹 Step 6: Connect MetaMask to Ganache
+1️⃣ Open MetaMask
+2️⃣ Click Settings → Networks → Add a new network
+3️⃣ Enter the following details:
 
-### Code Splitting
+Network Name: Ganache Localhost
+RPC URL: http://127.0.0.1:8545
+Chain ID: 1337 or 5777 (check your Ganache)
+Currency Symbol: ETH
+4️⃣ Save & Switch to the new network.
+🔹 Step 7: Run the React Frontend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+npm start
+This will open http://localhost:3000/ in your browser.
 
-### Analyzing the Bundle Size
+🔹 Step 8: Register & Verify Vaccine Batches
+1️⃣ Register a Batch
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Enter Batch ID & Manufacturer
+Click Register (MetaMask will ask for confirmation)
+2️⃣ Verify a Batch
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Enter the Batch ID to check if it's registered on the blockchain
